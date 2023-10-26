@@ -74,7 +74,7 @@ mod tests {
 
         let client_base = process.get_module_by_name("client.dll")?.base_address();
 
-        let global_vars = process.read_memory::<*const GlobalVarsBase>(client_base + 0x1696F40)?;
+        let global_vars = process.read_memory::<*const GlobalVarsBase>(client_base + 0x169AFE0)?;
 
         let current_map_name = unsafe {
             (*global_vars)
@@ -93,7 +93,7 @@ mod tests {
 
         let client_base = process.get_module_by_name("client.dll")?.base_address();
 
-        let local_player_controller = process.read_memory::<usize>(client_base + 0x17E27C8)?;
+        let local_player_controller = process.read_memory::<usize>(client_base + 0x17E8158)?;
 
         let player_name = process.read_string((local_player_controller + 0x610).into())?;
 
@@ -108,8 +108,8 @@ mod tests {
 
         let engine_base = process.get_module_by_name("engine2.dll")?.base_address();
 
-        let window_width = process.read_memory::<u32>(engine_base + 0x5386D0)?;
-        let window_height = process.read_memory::<u32>(engine_base + 0x5386D4)?;
+        let window_width = process.read_memory::<u32>(engine_base + 0x5386A8)?;
+        let window_height = process.read_memory::<u32>(engine_base + 0x5386AC)?;
 
         println!("Window size: {}x{}", window_width, window_height);
 
